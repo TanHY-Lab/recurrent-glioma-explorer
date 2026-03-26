@@ -331,6 +331,87 @@
       .card-cbio .card-bg { background-image: url('./images/cbio-data.jpg'); }
       /* Other: Brain neurons/anatomy — various research sources */
       .card-other .card-bg { background-image: url('./images/other-neuro.jpg'); }
+      /* Renji Hospital: Mouse model / neuroscience lab */
+      .card-renji .card-bg { background-image: url('./images/renji-mouse.jpg'); }
+
+      /* Pending badge */
+      .card-pending-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #ffaa00;
+        background: rgba(255, 170, 0, 0.12);
+        border: 1px solid rgba(255, 170, 0, 0.3);
+        padding: 0.2rem 0.6rem;
+        border-radius: 2px;
+        margin-bottom: 0.4rem;
+      }
+
+      .card-pending-badge::before {
+        content: '';
+        width: 5px;
+        height: 5px;
+        background: #ffaa00;
+        border-radius: 50%;
+        animation: pulse-dot 2s infinite;
+      }
+
+      /* Citation Section */
+      .citation-section {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 3rem 2.5rem 2rem;
+      }
+
+      .citation-box {
+        background: #0a1628;
+        border: 1px solid rgba(11, 61, 145, 0.4);
+        border-radius: 2px;
+        padding: 2rem 2.5rem;
+        position: relative;
+      }
+
+      .citation-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--nasa-red), var(--nasa-blue));
+      }
+
+      .citation-title {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--nasa-red);
+        margin-bottom: 1.2rem;
+      }
+
+      .citation-text {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        font-style: italic;
+      }
+
+      .citation-text strong {
+        color: var(--text-bright);
+        font-style: normal;
+      }
+
+      .citation-note {
+        margin-top: 1rem;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-style: normal;
+      }
 
       /* Wide last card */
       .source-grid .source-card:last-child {
@@ -518,6 +599,18 @@
             <div class="card-arrow"><span data-i18n="explore">EXPLORE</span> &rarr;</div>
           </div>
         </a>
+
+        <a class="source-card card-renji" href="explorer.html?source=Renji%20Hospital">
+          <div class="card-bg"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <div class="card-pending-badge" data-i18n="pendingBadge">Pending Publication</div>
+            <div class="card-tag">RENJI HOSPITAL</div>
+            <div class="card-title" data-i18n="renjiTitle">Renji Mouse Glioma Model</div>
+            <div class="card-desc" data-i18n="renjiDesc">scRNA-seq and spatial transcriptomics atlas of a mouse recurrent glioma model — Tan &amp; Bao Lab, Shanghai</div>
+            <div class="card-arrow"><span data-i18n="explore">EXPLORE</span> &rarr;</div>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -527,6 +620,24 @@
         <span data-i18n="viewAll">View All Datasets</span> &rarr;
       </a>
     </div>
+
+    <!-- Citation -->
+    <section class="citation-section">
+      <div class="citation-box">
+        <div class="citation-title" data-i18n="citationTitle">How to Cite / 引用信息</div>
+        <div class="citation-text">
+          <strong>Tan HY</strong>, Bao YH, et al.
+          <span data-i18n="citationArticle">Single-cell and spatial transcriptomic atlas of mouse recurrent glioma model.</span>
+          <em data-i18n="citationJournal">[Journal TBD]</em>, 2026.
+        </div>
+        <div class="citation-text" style="margin-top: 0.8rem;">
+          <span data-i18n="citationAffiliation">Department of Neurosurgery, Renji Hospital, Shanghai Jiao Tong University School of Medicine; School of Life Sciences, Fudan University; Naval Medical University</span>
+        </div>
+        <div class="citation-note" data-i18n="citationNote">
+          If you use the data or this platform in your research, please cite the above reference. The mouse recurrent glioma model dataset will be publicly available upon manuscript acceptance.
+        </div>
+      </div>
+    </section>
 
     <footer class="site-footer">
       Recurrent Glioma Multi-Omics Explorer &middot; Open Science Initiative
@@ -547,6 +658,13 @@
           cptacTitle: 'CPTAC Proteomics', cptacDesc: 'Clinical Proteomic Tumor Analysis Consortium \u2014 GBM proteomic/phosphoproteomic data',
           cbioTitle: 'cBioPortal', cbioDesc: 'Integrated cancer genomics portal with mutation, copy number, and expression data',
           otherTitle: 'Other Sources', otherDesc: 'Ivy GAP, REMBRANDT, EORTC, single-center cohorts and supplementary datasets',
+          renjiTitle: 'Renji Mouse Glioma Model', renjiDesc: 'scRNA-seq and spatial transcriptomics atlas of a mouse recurrent glioma model \u2014 Tan & Bao Lab, Shanghai',
+          pendingBadge: 'Pending Publication',
+          citationTitle: 'How to Cite',
+          citationArticle: 'Single-cell and spatial transcriptomic atlas of mouse recurrent glioma model.',
+          citationJournal: '[Journal TBD]',
+          citationAffiliation: 'Department of Neurosurgery, Renji Hospital, Shanghai Jiao Tong University School of Medicine; School of Life Sciences, Fudan University; Naval Medical University',
+          citationNote: 'If you use the data or this platform in your research, please cite the above reference. The mouse recurrent glioma model dataset will be publicly available upon manuscript acceptance.',
         },
         zh: {
           badge: '\u591a\u6e90\u6570\u636e\u805a\u5408', siteTitle: '\u590d\u53d1\u80f6\u8d28\u7624', siteTitleAccent: '\u591a\u7ec4\u5b66', siteTitleEnd: '\u6570\u636e\u6d4f\u89c8\u5668',
@@ -561,6 +679,13 @@
           cptacTitle: 'CPTAC \u86cb\u767d\u8d28\u7ec4\u5b66', cptacDesc: 'Clinical Proteomic Tumor Analysis Consortium\uff0cGBM \u86cb\u767d/\u78f7\u9178\u5316\u7ec4\u5b66',
           cbioTitle: 'cBioPortal \u95e8\u6237', cbioDesc: '\u7efc\u5408\u764c\u75c7\u57fa\u56e0\u7ec4\u95e8\u6237\u7f51\u7ad9\uff0c\u542b\u7a81\u53d8\u3001\u62f7\u8d1d\u6570\u3001\u8868\u8fbe\u7b49\u591a\u7ef4\u6570\u636e',
           otherTitle: '\u5176\u4ed6\u6570\u636e\u6765\u6e90', otherDesc: 'Ivy GAP\u3001REMBRANDT\u3001EORTC\u3001\u5355\u4e2d\u5fc3\u961f\u5217\u53ca\u6587\u732e\u9644\u5c5e\u6570\u636e\u96c6\u7b49',
+          renjiTitle: '\u4ec1\u6d4e\u533b\u9662\u5c0f\u9f20\u80f6\u8d28\u7624\u6a21\u578b', renjiDesc: '\u5c0f\u9f20\u590d\u53d1\u80f6\u8d28\u7624\u6a21\u578b\u7684\u5355\u7ec6\u80de\u8f6c\u5f55\u7ec4\u4e0e\u7a7a\u95f4\u8f6c\u5f55\u7ec4\u56fe\u8c31 \u2014 Tan & Bao \u8bfe\u9898\u7ec4\uff0c\u4e0a\u6d77',
+          pendingBadge: '\u5f85\u53d1\u8868',
+          citationTitle: '\u5f15\u7528\u4fe1\u606f',
+          citationArticle: '\u5c0f\u9f20\u590d\u53d1\u80f6\u8d28\u7624\u6a21\u578b\u7684\u5355\u7ec6\u80de\u4e0e\u7a7a\u95f4\u8f6c\u5f55\u7ec4\u56fe\u8c31\u3002',
+          citationJournal: '[\u671f\u520a\u5f85\u5b9a]',
+          citationAffiliation: '\u4e0a\u6d77\u4ea4\u901a\u5927\u5b66\u533b\u5b66\u9662\u9644\u5c5e\u4ec1\u6d4e\u533b\u9662\u795e\u7ecf\u5916\u79d1\uff1b\u590d\u65e6\u5927\u5b66\u751f\u547d\u79d1\u5b66\u5b66\u9662\uff1b\u6d77\u519b\u519b\u533b\u5927\u5b66',
+          citationNote: '\u5982\u60a8\u5728\u7814\u7a76\u4e2d\u4f7f\u7528\u4e86\u672c\u5e73\u53f0\u7684\u6570\u636e\uff0c\u8bf7\u5f15\u7528\u4ee5\u4e0a\u6587\u732e\u3002\u5c0f\u9f20\u590d\u53d1\u80f6\u8d28\u7624\u6a21\u578b\u6570\u636e\u96c6\u5c06\u5728\u6587\u7ae0\u63a5\u6536\u540e\u516c\u5f00\u3002',
         },
         fr: {
           badge: 'Agr\u00e9gation multi-sources', siteTitle: 'Gliome r\u00e9current', siteTitleAccent: 'Multi-omique', siteTitleEnd: 'Explorateur',
@@ -575,6 +700,13 @@
           cptacTitle: 'Prot\u00e9omique CPTAC', cptacDesc: 'Clinical Proteomic Tumor Analysis Consortium \u2014 donn\u00e9es prot\u00e9omiques du GBM',
           cbioTitle: 'cBioPortal', cbioDesc: 'Portail int\u00e9gr\u00e9 de g\u00e9nomique du cancer avec mutations, nombre de copies et expression',
           otherTitle: 'Autres sources', otherDesc: 'Ivy GAP, REMBRANDT, EORTC, cohortes monocentriques et jeux de donn\u00e9es suppl\u00e9mentaires',
+          renjiTitle: 'Mod\u00e8le murin Renji', renjiDesc: 'Atlas scRNA-seq et transcriptomique spatiale d\u2019un mod\u00e8le murin de gliome r\u00e9current \u2014 Labo Tan & Bao, Shanghai',
+          pendingBadge: 'Publication en attente',
+          citationTitle: 'Comment citer',
+          citationArticle: 'Atlas transcriptomique unicellulaire et spatial du mod\u00e8le murin de gliome r\u00e9current.',
+          citationJournal: '[Revue \u00e0 d\u00e9terminer]',
+          citationAffiliation: 'Service de Neurochirurgie, H\u00f4pital Renji, Facult\u00e9 de M\u00e9decine, Universit\u00e9 Jiao Tong de Shanghai; Facult\u00e9 des Sciences de la Vie, Universit\u00e9 Fudan; Universit\u00e9 de M\u00e9decine Militaire Navale',
+          citationNote: 'Si vous utilisez les donn\u00e9es ou cette plateforme dans vos recherches, veuillez citer la r\u00e9f\u00e9rence ci-dessus.',
         },
         de: {
           badge: 'Multi-Quellen-Aggregation', siteTitle: 'Rezidiv-Gliom', siteTitleAccent: 'Multi-Omik', siteTitleEnd: 'Explorer',
@@ -589,6 +721,13 @@
           cptacTitle: 'CPTAC-Proteomik', cptacDesc: 'Clinical Proteomic Tumor Analysis Consortium \u2014 GBM-Proteom-Daten',
           cbioTitle: 'cBioPortal', cbioDesc: 'Integriertes Krebsgenomik-Portal mit Mutations-, Kopienzahl- und Expressionsdaten',
           otherTitle: 'Weitere Quellen', otherDesc: 'Ivy GAP, REMBRANDT, EORTC, monozentrische Kohorten und erg\u00e4nzende Datens\u00e4tze',
+          renjiTitle: 'Renji Maus-Gliom-Modell', renjiDesc: 'scRNA-seq und r\u00e4umliche Transkriptomik-Atlas eines murinen rezidivierenden Gliom-Modells \u2014 Tan & Bao Labor, Shanghai',
+          pendingBadge: 'Publikation ausstehend',
+          citationTitle: 'Zitierweise',
+          citationArticle: 'Einzelzell- und r\u00e4umlicher Transkriptomik-Atlas des murinen rezidivierenden Gliom-Modells.',
+          citationJournal: '[Zeitschrift TBD]',
+          citationAffiliation: 'Abteilung f\u00fcr Neurochirurgie, Renji-Krankenhaus, Medizinische Fakult\u00e4t, Shanghai Jiao Tong Universit\u00e4t; Fakult\u00e4t f\u00fcr Biowissenschaften, Fudan-Universit\u00e4t; Marine-Milit\u00e4rmedizinische Universit\u00e4t',
+          citationNote: 'Wenn Sie die Daten oder diese Plattform in Ihrer Forschung verwenden, zitieren Sie bitte die obige Referenz.',
         }
       };
 

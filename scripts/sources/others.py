@@ -280,6 +280,45 @@ OTHER_DATASETS = [
         "pubmed_ids": ["28572459"],
         "source_url": "https://www.synapse.org/#!Synapse:syn7222066",
     },
+
+    # -----------------------------------------------------------------------
+    # Renji Hospital — Mouse Recurrent Glioma Model (Tan & Bao Lab)
+    # -----------------------------------------------------------------------
+    {
+        "id": "Renji_RGM",
+        "source": "Renji Hospital",
+        "accession": "Renji-RGM-2026",
+        "title": (
+            "Single-cell and Spatial Transcriptomic Atlas of Mouse "
+            "Recurrent Glioma Model"
+        ),
+        "organism": "Mus musculus",
+        "data_types": ["scRNA-seq", "spatial transcriptomics"],
+        "sample_count": None,
+        "recurrent_sample_count": None,
+        "tumor_subtypes": ["Glioma"],
+        "molecular_markers": [],
+        "treatment_info": "",
+        "summary": (
+            "Single-cell RNA sequencing (scRNA-seq) and spatial transcriptomics profiling "
+            "of a mouse recurrent glioma model constructed at the Department of Neurosurgery, "
+            "Renji Hospital, Shanghai Jiao Tong University School of Medicine. This dataset "
+            "characterizes the tumor microenvironment evolution during glioma recurrence at "
+            "single-cell and spatial resolution. Data pending publication — will be publicly "
+            "available upon manuscript acceptance."
+        ),
+        "contributors": "Tan Haoyuan, Bao Yinghui",
+        "institution": (
+            "Department of Neurosurgery, Renji Hospital, "
+            "Shanghai Jiao Tong University School of Medicine; "
+            "School of Life Sciences, Fudan University; "
+            "Naval Medical University"
+        ),
+        "country": "China",
+        "publication_date": "",
+        "pubmed_ids": [],
+        "source_url": "",
+    },
 ]
 
 
