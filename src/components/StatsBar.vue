@@ -2,29 +2,30 @@
   <div class="stats-bar">
     <div class="stat-card">
       <div class="stat-value">{{ datasetCount }}</div>
-      <div class="stat-label">Datasets / 数据集</div>
+      <div class="stat-label">{{ t('statDatasets') }}</div>
     </div>
     <div class="stat-card">
       <div class="stat-value">{{ sourceCount }}</div>
-      <div class="stat-label">Sources / 数据来源</div>
+      <div class="stat-label">{{ t('statSources') }}</div>
     </div>
     <div class="stat-card">
       <div class="stat-value">{{ omicsCount }}</div>
-      <div class="stat-label">Omics Types / 组学类型</div>
+      <div class="stat-label">{{ t('statOmics') }}</div>
     </div>
     <div class="stat-card">
       <div class="stat-value">{{ totalSamples.toLocaleString() }}</div>
-      <div class="stat-label">Total Samples / 总样本数</div>
+      <div class="stat-label">{{ t('statSamples') }}</div>
     </div>
     <div class="stat-card">
       <div class="stat-value">{{ recurrentSamples.toLocaleString() }}</div>
-      <div class="stat-label">Recurrent Samples / 复发样本</div>
+      <div class="stat-label">{{ t('statRecurrent') }}</div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue'
+import { t } from '../i18n.js'
 
 const props = defineProps({
   datasets: { type: Array, default: () => [] },

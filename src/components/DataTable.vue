@@ -17,16 +17,16 @@
         <template #default="{ row }">
           <div class="expand-content">
             <div v-if="row.summary" class="expand-section">
-              <div class="expand-label">Summary / 摘要</div>
+              <div class="expand-label">{{ t('expandSummary') }}</div>
               <div class="expand-text">{{ row.summary }}</div>
             </div>
             <div class="expand-meta">
               <div v-if="row.contributors" class="expand-section">
-                <div class="expand-label">Contributors / 贡献者</div>
+                <div class="expand-label">{{ t('expandContributors') }}</div>
                 <div class="expand-text">{{ row.contributors }}</div>
               </div>
               <div v-if="row.institution" class="expand-section">
-                <div class="expand-label">Institution / 机构</div>
+                <div class="expand-label">{{ t('expandInstitution') }}</div>
                 <div class="expand-text">{{ row.institution }}</div>
               </div>
               <div v-if="row.pubmed_ids && row.pubmed_ids.length" class="expand-section">
@@ -56,14 +56,14 @@
       </el-table-column>
 
       <!-- Source -->
-      <el-table-column prop="source" label="Source" sortable="custom" width="110">
+      <el-table-column prop="source" :label="t('colSource')" sortable="custom" width="110">
         <template #default="{ row }">
           <el-tag size="small" type="primary">{{ row.source }}</el-tag>
         </template>
       </el-table-column>
 
       <!-- Accession -->
-      <el-table-column prop="accession" label="Accession" sortable="custom" width="140">
+      <el-table-column prop="accession" :label="t('colAccession')" sortable="custom" width="140">
         <template #default="{ row }">
           <a v-if="row.source_url" :href="row.source_url" target="_blank" rel="noopener" class="accession-link" @click.stop>
             {{ row.accession }}
@@ -73,14 +73,14 @@
       </el-table-column>
 
       <!-- Title -->
-      <el-table-column prop="title" label="Title / 标题" sortable="custom" min-width="280" show-overflow-tooltip>
+      <el-table-column prop="title" :label="t('colTitle')" sortable="custom" min-width="280" show-overflow-tooltip>
         <template #default="{ row }">
           <span class="title-text">{{ row.title }}</span>
         </template>
       </el-table-column>
 
       <!-- Data Types -->
-      <el-table-column label="Data Types / 数据类型" width="200">
+      <el-table-column :label="t('colDataTypes')" width="200">
         <template #default="{ row }">
           <div class="tag-group">
             <el-tag
@@ -105,14 +105,14 @@
       </el-table-column>
 
       <!-- Sample Count -->
-      <el-table-column prop="sample_count" label="Samples" sortable="custom" width="100" align="right">
+      <el-table-column prop="sample_count" :label="t('colSamples')" sortable="custom" width="100" align="right">
         <template #default="{ row }">
           <span class="num-value">{{ (row.sample_count || 0).toLocaleString() }}</span>
         </template>
       </el-table-column>
 
       <!-- Recurrent Samples -->
-      <el-table-column prop="recurrent_sample_count" label="Recurrent" sortable="custom" width="105" align="right">
+      <el-table-column prop="recurrent_sample_count" :label="t('colRecurrent')" sortable="custom" width="105" align="right">
         <template #default="{ row }">
           <span class="num-value accent" v-if="row.recurrent_sample_count">{{ row.recurrent_sample_count.toLocaleString() }}</span>
           <span class="num-value muted" v-else>-</span>
@@ -120,7 +120,7 @@
       </el-table-column>
 
       <!-- Tumor Subtypes -->
-      <el-table-column label="Subtypes / 亚型" width="190">
+      <el-table-column :label="t('colSubtypes')" width="190">
         <template #default="{ row }">
           <div class="tag-group">
             <el-tag
@@ -145,10 +145,10 @@
       </el-table-column>
 
       <!-- Country -->
-      <el-table-column prop="country" label="Country" sortable="custom" width="100" />
+      <el-table-column prop="country" :label="t('colCountry')" sortable="custom" width="100" />
 
       <!-- Date -->
-      <el-table-column prop="publication_date" label="Date" sortable="custom" width="110">
+      <el-table-column prop="publication_date" :label="t('colDate')" sortable="custom" width="110">
         <template #default="{ row }">
           <span class="date-text">{{ row.publication_date || '-' }}</span>
         </template>
@@ -158,7 +158,7 @@
     <!-- Pagination -->
     <div class="pagination-bar">
       <div class="result-info">
-        Showing {{ paginatedData.length }} of {{ sortedData.length }} datasets
+        {{ t('showingOf').replace('{shown}', paginatedData.length).replace('{total}', sortedData.length) }}
       </div>
       <el-pagination
         v-model:current-page="currentPage"
@@ -174,6 +174,7 @@
 
 <script setup>
 import { ref, computed, watch } from 'vue'
+import { t } from '../i18n.js'
 
 const props = defineProps({
   datasets: { type: Array, default: () => [] },

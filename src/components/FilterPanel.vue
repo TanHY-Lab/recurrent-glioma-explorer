@@ -5,7 +5,7 @@
       <div class="filter-item keyword-search">
         <el-input
           v-model="keyword"
-          placeholder="Search datasets... / 搜索数据集..."
+          :placeholder="t('searchPlaceholder')"
           clearable
           :prefix-icon="Search"
           @input="emitFilters"
@@ -20,7 +20,7 @@
           multiple
           collapse-tags
           collapse-tags-tooltip
-          placeholder="Source / 数据来源"
+          :placeholder="t('sourcePlaceholder')"
           clearable
           @change="emitFilters"
         >
@@ -40,7 +40,7 @@
           multiple
           collapse-tags
           collapse-tags-tooltip
-          placeholder="Data Type / 数据类型"
+          :placeholder="t('dataTypePlaceholder')"
           clearable
           @change="emitFilters"
         >
@@ -60,14 +60,14 @@
           multiple
           collapse-tags
           collapse-tags-tooltip
-          placeholder="Subtype / 肿瘤亚型"
+          :placeholder="t('subtypePlaceholder')"
           clearable
           @change="emitFilters"
         >
           <el-option label="GBM" value="GBM" />
-          <el-option label="Astrocytoma / 星形细胞瘤" value="Astrocytoma" />
-          <el-option label="Oligodendroglioma / 少突胶质细胞瘤" value="Oligodendroglioma" />
-          <el-option label="Other / 其他" value="Other" />
+          <el-option :label="t('subtypeAstrocytoma')" value="Astrocytoma" />
+          <el-option :label="t('subtypeOligo')" value="Oligodendroglioma" />
+          <el-option :label="t('subtypeOther')" value="Other" />
         </el-select>
       </div>
 
@@ -75,22 +75,23 @@
       <div class="filter-item paired-toggle">
         <el-switch
           v-model="pairedOnly"
-          active-text="Paired / 配对"
+          :active-text="t('pairedLabel')"
           @change="emitFilters"
         />
       </div>
 
       <!-- Reset Button -->
       <div class="filter-item">
-        <el-button @click="resetFilters">Reset / 重置</el-button>
+        <el-button @click="resetFilters">{{ t('resetBtn') }}</el-button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { Search } from '@element-plus/icons-vue'
+import { t } from '../i18n.js'
 
 const props = defineProps({
   datasets: { type: Array, default: () => [] },

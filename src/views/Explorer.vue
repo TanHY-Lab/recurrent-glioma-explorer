@@ -4,9 +4,12 @@
     <header class="page-header">
       <div class="header-inner">
         <div class="header-left">
-          <a href="./index.html" class="back-link">&larr; Home</a>
-          <h1>Recurrent Glioma <span class="accent">Multi-Omics</span> Explorer</h1>
-          <p class="header-sub">复发胶质瘤多组学数据浏览器 &mdash; Integrated dataset explorer for recurrent glioma research</p>
+          <div class="header-top-row">
+            <a href="./index.html" class="back-link">&larr; {{ t('backHome') }}</a>
+            <LangSwitcher />
+          </div>
+          <h1>{{ t('explorerTitle') }} <span class="accent">{{ t('explorerTitleAccent') }}</span> {{ t('explorerTitleEnd') }}</h1>
+          <p class="header-sub">{{ t('explorerSubtitle') }}</p>
         </div>
       </div>
     </header>
@@ -29,16 +32,18 @@
 
     <!-- Footer -->
     <footer class="site-footer">
-      <p>Recurrent Glioma Multi-Omics Explorer &middot; Data aggregated from GEO, GLASS, CGGA, TCGA, CPTAC, cBioPortal and other sources</p>
+      <p>{{ t('footer') }}</p>
     </footer>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
+import { t } from '../i18n.js'
 import StatsBar from '../components/StatsBar.vue'
 import FilterPanel from '../components/FilterPanel.vue'
 import DataTable from '../components/DataTable.vue'
+import LangSwitcher from '../components/LangSwitcher.vue'
 
 const props = defineProps({
   datasets: { type: Array, default: () => [] },
@@ -134,12 +139,18 @@ const filteredDatasets = computed(() => {
   margin: 0 auto;
 }
 
+.header-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
 .back-link {
   display: inline-block;
   color: #8892b0;
   text-decoration: none;
   font-size: 0.8rem;
-  margin-bottom: 0.8rem;
   letter-spacing: 0.03em;
   transition: color 0.2s;
 }
