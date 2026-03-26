@@ -307,7 +307,7 @@ OTHER_DATASETS = [
             "single-cell and spatial resolution. Data pending publication — will be publicly "
             "available upon manuscript acceptance."
         ),
-        "contributors": "Tan Haoyuan, Bao Yinghui",
+        "contributors": "Tan Haoyuan*, Zhao Dongxu*, ..., Bao Yinghui#",
         "institution": (
             "Department of Neurosurgery, Renji Hospital, "
             "Shanghai Jiao Tong University School of Medicine; "
