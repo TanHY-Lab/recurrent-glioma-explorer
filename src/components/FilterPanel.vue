@@ -157,9 +157,9 @@ watch(() => props.datasets.length, (len) => {
 
 <style scoped>
 .filter-panel {
-  background: #131a3e;
-  border: 1px solid rgba(0, 212, 170, 0.1);
-  border-radius: 6px;
+  background: #0a1628;
+  border: 1px solid rgba(11, 61, 145, 0.4);
+  border-radius: 2px;
   padding: 1rem 1.2rem;
   margin-bottom: 1.5rem;
 }
@@ -190,12 +190,12 @@ watch(() => props.datasets.length, (len) => {
 }
 
 .paired-toggle :deep(.el-switch__label) {
-  color: #8892b0 !important;
+  color: #a8b8d0 !important;
   font-size: 0.78rem;
 }
 
 .paired-toggle :deep(.el-switch__label.is-active) {
-  color: #00d4aa !important;
+  color: #FC3D21 !important;
 }
 
 @media (max-width: 768px) {

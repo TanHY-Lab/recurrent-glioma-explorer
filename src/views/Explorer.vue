@@ -1,36 +1,32 @@
 <template>
   <div class="explorer-page">
-    <!-- Page Header -->
+    <!-- Page Header with BG image -->
     <header class="page-header">
+      <div class="header-bg"></div>
+      <div class="header-overlay"></div>
       <div class="header-inner">
-        <div class="header-left">
-          <div class="header-top-row">
-            <a href="./index.html" class="back-link">&larr; {{ t('backHome') }}</a>
-            <LangSwitcher />
-          </div>
-          <h1>{{ t('explorerTitle') }} <span class="accent">{{ t('explorerTitleAccent') }}</span> {{ t('explorerTitleEnd') }}</h1>
-          <p class="header-sub">{{ t('explorerSubtitle') }}</p>
+        <div class="header-top-row">
+          <a href="./index.html" class="back-link">&larr; {{ t('backHome') }}</a>
+          <LangSwitcher />
         </div>
+        <div class="header-badge">RG-OMICS</div>
+        <h1>{{ t('explorerTitle') }} <span class="accent">{{ t('explorerTitleAccent') }}</span> {{ t('explorerTitleEnd') }}</h1>
+        <p class="header-sub">{{ t('explorerSubtitle') }}</p>
       </div>
     </header>
 
     <!-- Stats -->
     <div class="content-area">
       <StatsBar :datasets="filteredDatasets" :all-datasets="datasets" />
-
-      <!-- Filters -->
       <FilterPanel
         :datasets="datasets"
         :initial-source="initialSource"
         :initial-type="initialType"
         @filter-change="onFilterChange"
       />
-
-      <!-- Table -->
       <DataTable :datasets="filteredDatasets" :loading="loading" />
     </div>
 
-    <!-- Footer -->
     <footer class="site-footer">
       <p>{{ t('footer') }}</p>
     </footer>
@@ -66,7 +62,6 @@ function onFilterChange(newFilters) {
 
 const filteredDatasets = computed(() => {
   let result = props.datasets
-
   const { keyword, sources, dataTypes, subtypes, pairedOnly } = filters.value
 
   if (keyword) {
@@ -79,29 +74,10 @@ const filteredDatasets = computed(() => {
       (d.institution || '').toLowerCase().includes(kw)
     )
   }
-
-  if (sources.length > 0) {
-    result = result.filter(d => sources.includes(d.source))
-  }
-
-  if (dataTypes.length > 0) {
-    result = result.filter(d => {
-      const dt = d.data_types || []
-      return dataTypes.some(t => dt.includes(t))
-    })
-  }
-
-  if (subtypes.length > 0) {
-    result = result.filter(d => {
-      const st = d.tumor_subtypes || []
-      return subtypes.some(t => st.includes(t))
-    })
-  }
-
-  if (pairedOnly) {
-    result = result.filter(d => (d.recurrent_sample_count || 0) > 0)
-  }
-
+  if (sources.length > 0) result = result.filter(d => sources.includes(d.source))
+  if (dataTypes.length > 0) result = result.filter(d => (d.data_types || []).some(t => dataTypes.includes(t)))
+  if (subtypes.length > 0) result = result.filter(d => (d.tumor_subtypes || []).some(t => subtypes.includes(t)))
+  if (pairedOnly) result = result.filter(d => (d.recurrent_sample_count || 0) > 0)
   return result
 })
 </script>
@@ -114,22 +90,23 @@ const filteredDatasets = computed(() => {
 }
 
 .page-header {
-  background: linear-gradient(135deg, #0a0e27 0%, #0f1535 40%, #131a3e 100%);
-  border-bottom: 1px solid rgba(0, 212, 170, 0.1);
-  padding: 2rem 2.5rem;
   position: relative;
+  padding: 2.5rem 2.5rem 2rem;
   overflow: hidden;
 }
 
-.page-header::before {
-  content: '';
+.header-bg {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(0, 212, 170, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 170, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
+  background: url('https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1920&q=80') center/cover no-repeat;
+  filter: brightness(0.2) saturate(0.5);
+}
+
+.header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6,7,20,0.7) 0%, rgba(6,7,20,0.95) 100%),
+              linear-gradient(135deg, rgba(11,61,145,0.15) 0%, transparent 60%);
 }
 
 .header-inner {
@@ -143,35 +120,52 @@ const filteredDatasets = computed(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.2rem;
 }
 
 .back-link {
   display: inline-block;
-  color: #8892b0;
+  color: #a8b8d0;
   text-decoration: none;
-  font-size: 0.8rem;
-  letter-spacing: 0.03em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   transition: color 0.2s;
 }
 
-.back-link:hover { color: #00d4aa; }
+.back-link:hover { color: #FC3D21; }
+
+.header-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #FC3D21;
+  border: 1px solid rgba(252, 61, 33, 0.35);
+  padding: 0.3rem 0.8rem;
+  border-radius: 2px;
+  background: rgba(252, 61, 33, 0.08);
+  margin-bottom: 0.8rem;
+}
 
 .page-header h1 {
-  font-size: 1.6rem;
-  font-weight: 500;
+  font-size: 2rem;
+  font-weight: 900;
   color: #ffffff;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
   margin-bottom: 0.4rem;
 }
 
-.accent { color: #00d4aa; }
+.accent { color: #FC3D21; }
 
 .header-sub {
-  color: #8892b0;
+  color: #a8b8d0;
   font-size: 0.85rem;
   font-weight: 300;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
 .content-area {
@@ -185,16 +179,16 @@ const filteredDatasets = computed(() => {
 .site-footer {
   text-align: center;
   padding: 1.5rem;
-  color: #4a5580;
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
+  color: #5a6a8a;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-top: 1px solid rgba(0, 212, 170, 0.06);
+  border-top: 1px solid rgba(11, 61, 145, 0.2);
 }
 
 @media (max-width: 768px) {
   .page-header { padding: 1.5rem 1rem; }
   .content-area { padding: 1rem; }
-  .page-header h1 { font-size: 1.2rem; }
+  .page-header h1 { font-size: 1.4rem; }
 }
 </style>

@@ -4,183 +4,337 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recurrent Glioma Multi-Omics Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
 
       :root {
-        --bg-deep: #0a0e27;
-        --bg-card: #131a3e;
-        --bg-card-hover: #1a2350;
-        --accent: #00d4aa;
-        --accent-dim: rgba(0, 212, 170, 0.15);
-        --accent-border: rgba(0, 212, 170, 0.25);
-        --text-primary: #e8edf5;
-        --text-secondary: #8892b0;
-        --text-muted: #4a5580;
-        --border: rgba(0, 212, 170, 0.12);
+        --nasa-blue: #0B3D91;
+        --nasa-red: #FC3D21;
+        --nasa-dark: #060714;
+        --nasa-panel: rgba(11, 61, 145, 0.25);
+        --nasa-panel-solid: #0a1628;
+        --nasa-border: rgba(11, 61, 145, 0.4);
+        --text-bright: #ffffff;
+        --text-secondary: #a8b8d0;
+        --text-muted: #5a6a8a;
       }
 
       body {
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        background: var(--bg-deep);
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--nasa-dark);
+        color: var(--text-bright);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* Top Nav Bar — NASA style */
+      .top-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 2.5rem;
+        background: rgba(6, 7, 20, 0.85);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(11, 61, 145, 0.3);
+      }
+
+      .top-bar .logo {
+        font-weight: 800;
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--text-bright);
+      }
+
+      .top-bar .logo span { color: var(--nasa-red); }
+
+      .lang-select {
+        background: rgba(11, 61, 145, 0.3);
+        color: var(--text-bright);
+        border: 1px solid var(--nasa-border);
+        border-radius: 4px;
+        padding: 0.35rem 2rem 0.35rem 0.7rem;
+        font-size: 0.75rem;
+        font-family: inherit;
+        cursor: pointer;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23FC3D21'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.6rem center;
+      }
+
+      .lang-select:hover { border-color: var(--nasa-red); }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 2.5rem 1.5rem;
-        color: var(--text-primary);
-      }
-
-      body::before {
-        content: '';
-        position: fixed;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
-        background-size: 60px 60px;
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      .wrapper { position: relative; z-index: 1; width: 100%; max-width: 1160px; }
-
-      /* Language Switcher */
-      .lang-bar {
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 1rem;
-      }
-
-      .lang-select {
-        background: var(--bg-card);
-        color: var(--text-primary);
-        border: 1px solid var(--accent-border);
-        border-radius: 4px;
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-        cursor: pointer;
-        outline: none;
-        appearance: none;
-        -webkit-appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2300d4aa'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 0.6rem center;
-        padding-right: 2rem;
-      }
-
-      .lang-select:hover { border-color: var(--accent); }
-
-      /* Header */
-      .header {
-        text-align: center;
-        margin-bottom: 3rem;
-      }
-
-      .header .badge {
-        display: inline-block;
-        font-size: 0.7rem;
-        font-weight: 500;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--accent);
-        border: 1px solid var(--accent-border);
-        padding: 0.3rem 1rem;
-        border-radius: 2px;
-        margin-bottom: 1.2rem;
-      }
-
-      .header h1 {
-        color: #ffffff;
-        font-size: 2.4rem;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-        line-height: 1.2;
-        margin-bottom: 0.4rem;
-      }
-
-      .header h1 span { color: var(--accent); }
-
-      .header .subtitle {
-        color: var(--text-secondary);
-        font-size: 1.1rem;
-        font-weight: 400;
-        margin-bottom: 0.8rem;
-      }
-
-      .header .desc {
-        color: var(--text-muted);
-        font-size: 0.88rem;
-        font-weight: 400;
-        letter-spacing: 0.02em;
-      }
-
-      /* Cards Grid */
-      .cards {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1px;
-        background: var(--border);
-        border: 1px solid var(--border);
-        border-radius: 4px;
+        padding: 6rem 2rem 4rem;
         overflow: hidden;
       }
 
-      .card {
-        background: var(--bg-card);
-        padding: 2rem 1.6rem;
-        text-decoration: none;
-        color: inherit;
-        transition: background 0.3s;
-        display: flex;
-        flex-direction: column;
-        gap: 0.8rem;
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          url('https://images.unsplash.com/photo-1559757175-5700dde675bc?w=1920&q=80') center/cover no-repeat;
+        filter: brightness(0.3) saturate(0.7);
+        z-index: 0;
       }
 
-      .card:hover { background: var(--bg-card-hover); }
-
-      .card .icon-area {
-        font-size: 2rem;
-        line-height: 1;
-        margin-bottom: 0.2rem;
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(6,7,20,0.9) 0%, rgba(6,7,20,0.4) 40%, rgba(6,7,20,0.7) 80%, rgba(6,7,20,1) 100%),
+          linear-gradient(135deg, rgba(11,61,145,0.2) 0%, transparent 60%);
+        z-index: 1;
       }
 
-      .card .title-en {
-        font-size: 0.68rem;
-        color: var(--accent);
-        font-weight: 500;
-        letter-spacing: 0.1em;
+      /* Scan line effect */
+      .hero-scanlines {
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(11, 61, 145, 0.03) 2px,
+          rgba(11, 61, 145, 0.03) 4px
+        );
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        max-width: 900px;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--nasa-red);
+        border: 1px solid rgba(252, 61, 33, 0.4);
+        padding: 0.4rem 1.2rem;
+        border-radius: 2px;
+        margin-bottom: 2rem;
+        background: rgba(252, 61, 33, 0.08);
+      }
+
+      .hero-badge::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        background: var(--nasa-red);
+        border-radius: 50%;
+        animation: pulse-dot 2s infinite;
+      }
+
+      @keyframes pulse-dot {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        margin-bottom: 1.2rem;
         text-transform: uppercase;
       }
 
-      .card .title-main {
-        font-size: 1.2rem;
+      .hero h1 .accent { color: var(--nasa-red); }
+
+      .hero .subtitle {
+        font-size: 1.15rem;
+        font-weight: 300;
+        color: var(--text-secondary);
+        letter-spacing: 0.04em;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .hero .omics-bar {
+        font-size: 0.72rem;
         font-weight: 500;
-        color: #ffffff;
-        letter-spacing: 0.01em;
-      }
-
-      .card .desc {
-        font-size: 0.78rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
         color: var(--text-muted);
-        line-height: 1.5;
-        flex: 1;
+        margin-bottom: 2.5rem;
       }
 
-      .card .arrow {
-        margin-top: auto;
-        color: rgba(0, 212, 170, 0.4);
+      .hero .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        background: var(--nasa-red);
+        color: white;
+        text-decoration: none;
+        padding: 0.9rem 2.4rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+
+      .hero .cta-btn:hover {
+        background: #e0321a;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(252, 61, 33, 0.3);
+      }
+
+      .hero .cta-btn .arrow { font-size: 1.1rem; }
+
+      /* Data Source Grid */
+      .sources-section {
+        position: relative;
+        padding: 0 2.5rem 5rem;
+        max-width: 1240px;
+        margin: -3rem auto 0;
+        z-index: 4;
+      }
+
+      .section-label {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--nasa-red);
+        margin-bottom: 1.5rem;
+        padding-left: 0.1rem;
+      }
+
+      .source-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2px;
+      }
+
+      .source-card {
+        position: relative;
+        text-decoration: none;
+        color: inherit;
+        overflow: hidden;
+        min-height: 260px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        transition: transform 0.3s;
+      }
+
+      .source-card:hover { transform: translateY(-3px); }
+
+      .source-card .card-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.35) saturate(0.6);
+        transition: filter 0.4s, transform 0.4s;
+      }
+
+      .source-card:hover .card-bg {
+        filter: brightness(0.45) saturate(0.8);
+        transform: scale(1.05);
+      }
+
+      .source-card .card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 30%, rgba(6,7,20,0.95) 100%);
+      }
+
+      .source-card .card-content {
+        position: relative;
+        z-index: 1;
+        padding: 1.5rem;
+      }
+
+      .source-card .card-tag {
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--nasa-red);
+        margin-bottom: 0.5rem;
+      }
+
+      .source-card .card-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--text-bright);
+        margin-bottom: 0.4rem;
+        line-height: 1.2;
+      }
+
+      .source-card .card-desc {
         font-size: 0.75rem;
-        letter-spacing: 0.05em;
-        transition: color 0.2s;
+        color: var(--text-secondary);
+        line-height: 1.5;
+        margin-bottom: 0.8rem;
       }
 
-      .card:hover .arrow { color: var(--accent); }
+      .source-card .card-arrow {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--nasa-red);
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: all 0.3s;
+      }
 
-      /* Bottom bar */
-      .bottom-bar {
-        margin-top: 2rem;
+      .source-card:hover .card-arrow {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Card backgrounds */
+      .card-geo .card-bg { background-image: url('https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600&q=80'); }
+      .card-glass .card-bg { background-image: url('https://images.unsplash.com/photo-1551190822-a9ce113ac100?w=600&q=80'); }
+      .card-cgga .card-bg { background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80'); }
+      .card-tcga .card-bg { background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80'); }
+      .card-cptac .card-bg { background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80'); }
+      .card-cbio .card-bg { background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80'); }
+      .card-other .card-bg { background-image: url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&q=80'); }
+
+      /* Wide last card */
+      .source-grid .source-card:last-child {
+        grid-column: span 1;
+      }
+
+      /* Bottom Bar */
+      .bottom-section {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 2.5rem 4rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -188,138 +342,197 @@
         gap: 1rem;
       }
 
-      .bottom-bar .meta {
-        font-size: 0.75rem;
+      .bottom-section .meta {
+        font-size: 0.7rem;
         color: var(--text-muted);
-        letter-spacing: 0.03em;
+        letter-spacing: 0.05em;
       }
 
-      .bottom-bar a {
-        color: var(--accent);
-        font-size: 0.8rem;
+      .bottom-section .view-all {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        color: var(--text-bright);
         text-decoration: none;
-        font-weight: 500;
-        letter-spacing: 0.04em;
-        padding: 0.55rem 1.4rem;
-        border: 1px solid var(--accent-border);
-        border-radius: 3px;
-        transition: background 0.2s, border-color 0.2s;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.7rem 1.8rem;
+        border: 1px solid var(--nasa-border);
+        border-radius: 2px;
+        transition: all 0.3s;
       }
 
-      .bottom-bar a:hover {
-        background: var(--accent-dim);
-        border-color: var(--accent);
+      .bottom-section .view-all:hover {
+        border-color: var(--nasa-red);
+        color: var(--nasa-red);
+        background: rgba(252, 61, 33, 0.08);
+      }
+
+      /* Footer */
+      .site-footer {
+        text-align: center;
+        padding: 2rem;
+        border-top: 1px solid rgba(11, 61, 145, 0.2);
+        font-size: 0.65rem;
+        color: var(--text-muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
 
       /* Responsive */
-      @media (max-width: 900px) {
-        .cards { grid-template-columns: repeat(2, 1fr); }
+      @media (max-width: 1024px) {
+        .source-grid { grid-template-columns: repeat(2, 1fr); }
+        .hero h1 { font-size: 2.8rem; }
       }
 
-      @media (max-width: 560px) {
-        .cards { grid-template-columns: 1fr; }
-        .header h1 { font-size: 1.6rem; }
-        .header .subtitle { font-size: 0.95rem; }
+      @media (max-width: 640px) {
+        .source-grid { grid-template-columns: 1fr; }
+        .hero h1 { font-size: 2rem; }
+        .hero { padding: 5rem 1.2rem 3rem; }
+        .sources-section { padding: 0 1.2rem 3rem; }
+        .top-bar { padding: 0.6rem 1.2rem; }
       }
     </style>
   </head>
   <body>
-    <div class="wrapper">
-      <!-- Language Switcher -->
-      <div class="lang-bar">
-        <select class="lang-select" id="langSelect" onchange="switchLang(this.value)">
-          <option value="en">English</option>
-          <option value="zh">中文</option>
-          <option value="fr">Français</option>
-          <option value="de">Deutsch</option>
-        </select>
-      </div>
+    <!-- Top Navigation -->
+    <nav class="top-bar">
+      <div class="logo"><span>RG</span>-OMICS EXPLORER</div>
+      <select class="lang-select" id="langSelect" onchange="switchLang(this.value)">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+      </select>
+    </nav>
 
-      <div class="header">
-        <div class="badge" data-i18n="badge">Multi-Source Aggregation</div>
-        <h1><span data-i18n="siteTitle">Recurrent Glioma</span> <span data-i18n="siteTitleAccent" style="color:var(--accent)">Multi-Omics</span> <span data-i18n="siteTitleEnd">Explorer</span></h1>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-scanlines"></div>
+      <div class="hero-content">
+        <div class="hero-badge" data-i18n="badge">Multi-Source Aggregation</div>
+        <h1>
+          <span data-i18n="siteTitle">Recurrent Glioma</span><br>
+          <span class="accent" data-i18n="siteTitleAccent">Multi-Omics</span>
+          <span data-i18n="siteTitleEnd">Explorer</span>
+        </h1>
         <div class="subtitle" data-i18n="subtitle">Integrated dataset explorer for recurrent glioma research</div>
-        <p class="desc" data-i18n="omicsBar">
-          Bulk RNA-seq &middot; scRNA-seq &middot; snRNA-seq &middot; Spatial Transcriptomics &middot; WES/WGS &middot; Methylation &middot; Proteomics
-        </p>
-      </div>
-
-      <div class="cards">
-        <a class="card" href="explorer.html?source=GEO">
-          <div class="icon-area">&#128451;</div>
-          <div class="title-en">GEO / NCBI</div>
-          <div class="title-main" data-i18n="geoTitle">GEO Database</div>
-          <div class="desc" data-i18n="geoDesc">Recurrent glioma omics datasets from NCBI Gene Expression Omnibus</div>
-          <div class="arrow"><span data-i18n="explore">EXPLORE</span> &#8594;</div>
-        </a>
-
-        <a class="card" href="explorer.html?source=GLASS">
-          <div class="icon-area">&#129516;</div>
-          <div class="title-en">GLASS Consortium</div>
-          <div class="title-main" data-i18n="glassTitle">GLASS Consortium</div>
-          <div class="desc" data-i18n="glassDesc">Glioma Longitudinal AnalySiS — international consortium tracking primary-recurrence paired samples</div>
-          <div class="arrow"><span data-i18n="explore">EXPLORE</span> &#8594;</div>
-        </a>
-
-        <a class="card" href="explorer.html?source=CGGA">
-          <div class="icon-area">&#127975;</div>
-          <div class="title-en">CGGA</div>
-          <div class="title-main" data-i18n="cggaTitle">CGGA</div>
-          <div class="desc" data-i18n="cggaDesc">Chinese Glioma Genome Atlas — large-scale Chinese glioma multi-omics cohort</div>
-          <div class="arrow"><span data-i18n="explore">EXPLORE</span> &#8594;</div>
-        </a>
-
-        <a class="card" href="explorer.html?source=TCGA">
-          <div class="icon-area">&#129516;</div>
-          <div class="title-en">TCGA / GDC</div>
-          <div class="title-main" data-i18n="tcgaTitle">TCGA / GDC</div>
-          <div class="desc" data-i18n="tcgaDesc">NCI Genomic Data Commons — LGG/GBM multi-omics data with recurrent samples</div>
-          <div class="arrow"><span data-i18n="explore">EXPLORE</span> &#8594;</div>
-        </a>
-
-        <a class="card" href="explorer.html?source=CPTAC">
-          <div class="icon-area">&#128300;</div>
-          <div class="title-en">CPTAC-GBM</div>
-          <div class="title-main" data-i18n="cptacTitle">CPTAC Proteomics</div>
-          <div class="desc" data-i18n="cptacDesc">Clinical Proteomic Tumor Analysis Consortium — GBM proteomic/phosphoproteomic data</div>
-          <div class="arrow"><span data-i18n="explore">EXPLORE</span> &#8594;</div>
-        </a>
-
-        <a class="card" href="explorer.html?source=cBioPortal">
-          <div class="icon-area">&#128202;</div>
-          <div class="title-en">cBioPortal</div>
-          <div class="title-main" data-i18n="cbioTitle">cBioPortal</div>
-          <div class="desc" data-i18n="cbioDesc">Integrated cancer genomics portal with mutation, copy number, and expression data</div>
-          <div class="arrow"><span data-i18n="explore">EXPLORE</span> &#8594;</div>
-        </a>
-
-        <a class="card" href="explorer.html?source=Other">
-          <div class="icon-area">&#128218;</div>
-          <div class="title-en">Other Sources</div>
-          <div class="title-main" data-i18n="otherTitle">Other Sources</div>
-          <div class="desc" data-i18n="otherDesc">Ivy GAP, REMBRANDT, EORTC, single-center cohorts and supplementary datasets</div>
-          <div class="arrow"><span data-i18n="explore">EXPLORE</span> &#8594;</div>
+        <div class="omics-bar" data-i18n="omicsBar">
+          Bulk RNA-seq · scRNA-seq · snRNA-seq · Spatial Transcriptomics · WES/WGS · Methylation · Proteomics
+        </div>
+        <a class="cta-btn" href="explorer.html">
+          <span data-i18n="viewAll">View All Datasets</span>
+          <span class="arrow">&rarr;</span>
         </a>
       </div>
+    </section>
 
-      <div class="bottom-bar">
-        <span class="meta" data-i18n="metaInfo">Data sources: GEO, GLASS, CGGA, TCGA, CPTAC, cBioPortal · Updated periodically</span>
-        <a href="explorer.html"><span data-i18n="viewAll">View All Datasets</span> &#8594;</a>
+    <!-- Data Sources -->
+    <section class="sources-section">
+      <div class="section-label" data-i18n="sectionSources">Data Sources</div>
+      <div class="source-grid">
+        <a class="source-card card-geo" href="explorer.html?source=GEO">
+          <div class="card-bg"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <div class="card-tag">GEO / NCBI</div>
+            <div class="card-title" data-i18n="geoTitle">GEO Database</div>
+            <div class="card-desc" data-i18n="geoDesc">Recurrent glioma omics datasets from NCBI Gene Expression Omnibus</div>
+            <div class="card-arrow"><span data-i18n="explore">EXPLORE</span> &rarr;</div>
+          </div>
+        </a>
+
+        <a class="source-card card-glass" href="explorer.html?source=GLASS">
+          <div class="card-bg"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <div class="card-tag">GLASS CONSORTIUM</div>
+            <div class="card-title" data-i18n="glassTitle">GLASS Consortium</div>
+            <div class="card-desc" data-i18n="glassDesc">Glioma Longitudinal AnalySiS — international consortium tracking primary-recurrence paired samples</div>
+            <div class="card-arrow"><span data-i18n="explore">EXPLORE</span> &rarr;</div>
+          </div>
+        </a>
+
+        <a class="source-card card-cgga" href="explorer.html?source=CGGA">
+          <div class="card-bg"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <div class="card-tag">CGGA</div>
+            <div class="card-title" data-i18n="cggaTitle">CGGA</div>
+            <div class="card-desc" data-i18n="cggaDesc">Chinese Glioma Genome Atlas — large-scale Chinese glioma multi-omics cohort</div>
+            <div class="card-arrow"><span data-i18n="explore">EXPLORE</span> &rarr;</div>
+          </div>
+        </a>
+
+        <a class="source-card card-tcga" href="explorer.html?source=TCGA">
+          <div class="card-bg"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <div class="card-tag">TCGA / GDC</div>
+            <div class="card-title" data-i18n="tcgaTitle">TCGA / GDC</div>
+            <div class="card-desc" data-i18n="tcgaDesc">NCI Genomic Data Commons — LGG/GBM multi-omics data with recurrent samples</div>
+            <div class="card-arrow"><span data-i18n="explore">EXPLORE</span> &rarr;</div>
+          </div>
+        </a>
+
+        <a class="source-card card-cptac" href="explorer.html?source=CPTAC">
+          <div class="card-bg"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <div class="card-tag">CPTAC-GBM</div>
+            <div class="card-title" data-i18n="cptacTitle">CPTAC Proteomics</div>
+            <div class="card-desc" data-i18n="cptacDesc">Clinical Proteomic Tumor Analysis Consortium — GBM proteomic/phosphoproteomic data</div>
+            <div class="card-arrow"><span data-i18n="explore">EXPLORE</span> &rarr;</div>
+          </div>
+        </a>
+
+        <a class="source-card card-cbio" href="explorer.html?source=cBioPortal">
+          <div class="card-bg"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <div class="card-tag">cBioPortal</div>
+            <div class="card-title" data-i18n="cbioTitle">cBioPortal</div>
+            <div class="card-desc" data-i18n="cbioDesc">Integrated cancer genomics portal with mutation, copy number, and expression data</div>
+            <div class="card-arrow"><span data-i18n="explore">EXPLORE</span> &rarr;</div>
+          </div>
+        </a>
+
+        <a class="source-card card-other" href="explorer.html?source=Other">
+          <div class="card-bg"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <div class="card-tag">OTHER</div>
+            <div class="card-title" data-i18n="otherTitle">Other Sources</div>
+            <div class="card-desc" data-i18n="otherDesc">Ivy GAP, REMBRANDT, EORTC, single-center cohorts and supplementary datasets</div>
+            <div class="card-arrow"><span data-i18n="explore">EXPLORE</span> &rarr;</div>
+          </div>
+        </a>
       </div>
+    </section>
+
+    <div class="bottom-section">
+      <span class="meta" data-i18n="metaInfo">Data sources: GEO, GLASS, CGGA, TCGA, CPTAC, cBioPortal · Updated periodically</span>
+      <a class="view-all" href="explorer.html">
+        <span data-i18n="viewAll">View All Datasets</span> &rarr;
+      </a>
     </div>
+
+    <footer class="site-footer">
+      Recurrent Glioma Multi-Omics Explorer &middot; Open Science Initiative
+    </footer>
 
     <script>
       const i18n = {
         en: {
-          badge: 'Multi-Source Aggregation',
-          siteTitle: 'Recurrent Glioma',
-          siteTitleAccent: 'Multi-Omics',
-          siteTitleEnd: 'Explorer',
+          badge: 'Multi-Source Aggregation', siteTitle: 'Recurrent Glioma', siteTitleAccent: 'Multi-Omics', siteTitleEnd: 'Explorer',
           subtitle: 'Integrated dataset explorer for recurrent glioma research',
           omicsBar: 'Bulk RNA-seq \u00b7 scRNA-seq \u00b7 snRNA-seq \u00b7 Spatial Transcriptomics \u00b7 WES/WGS \u00b7 Methylation \u00b7 Proteomics',
-          viewAll: 'View All Datasets',
-          metaInfo: 'Data sources: GEO, GLASS, CGGA, TCGA, CPTAC, cBioPortal \u00b7 Updated periodically',
-          explore: 'EXPLORE',
+          viewAll: 'View All Datasets', metaInfo: 'Data sources: GEO, GLASS, CGGA, TCGA, CPTAC, cBioPortal \u00b7 Updated periodically',
+          explore: 'EXPLORE', sectionSources: 'Data Sources',
           geoTitle: 'GEO Database', geoDesc: 'Recurrent glioma omics datasets from NCBI Gene Expression Omnibus',
           glassTitle: 'GLASS Consortium', glassDesc: 'Glioma Longitudinal AnalySiS \u2014 international consortium tracking primary-recurrence paired samples',
           cggaTitle: 'CGGA', cggaDesc: 'Chinese Glioma Genome Atlas \u2014 large-scale Chinese glioma multi-omics cohort',
@@ -329,15 +542,11 @@
           otherTitle: 'Other Sources', otherDesc: 'Ivy GAP, REMBRANDT, EORTC, single-center cohorts and supplementary datasets',
         },
         zh: {
-          badge: '\u591a\u6e90\u6570\u636e\u805a\u5408',
-          siteTitle: '\u590d\u53d1\u80f6\u8d28\u7624',
-          siteTitleAccent: '\u591a\u7ec4\u5b66',
-          siteTitleEnd: '\u6570\u636e\u6d4f\u89c8\u5668',
+          badge: '\u591a\u6e90\u6570\u636e\u805a\u5408', siteTitle: '\u590d\u53d1\u80f6\u8d28\u7624', siteTitleAccent: '\u591a\u7ec4\u5b66', siteTitleEnd: '\u6570\u636e\u6d4f\u89c8\u5668',
           subtitle: '\u590d\u53d1\u80f6\u8d28\u7624\u7814\u7a76\u7efc\u5408\u6570\u636e\u96c6\u6d4f\u89c8\u5e73\u53f0',
           omicsBar: 'Bulk RNA-seq \u00b7 scRNA-seq \u00b7 snRNA-seq \u00b7 \u7a7a\u95f4\u8f6c\u5f55\u7ec4 \u00b7 WES/WGS \u00b7 \u7532\u57fa\u5316 \u00b7 \u86cb\u767d\u8d28\u7ec4',
-          viewAll: '\u6d4f\u89c8\u6240\u6709\u6570\u636e\u96c6',
-          metaInfo: '\u6570\u636e\u6765\u6e90\uff1aGEO\u3001GLASS\u3001CGGA\u3001TCGA\u3001CPTAC\u3001cBioPortal \u00b7 \u5b9a\u671f\u66f4\u65b0',
-          explore: '\u6d4f\u89c8',
+          viewAll: '\u6d4f\u89c8\u6240\u6709\u6570\u636e\u96c6', metaInfo: '\u6570\u636e\u6765\u6e90\uff1aGEO\u3001GLASS\u3001CGGA\u3001TCGA\u3001CPTAC\u3001cBioPortal \u00b7 \u5b9a\u671f\u66f4\u65b0',
+          explore: '\u6d4f\u89c8', sectionSources: '\u6570\u636e\u6765\u6e90',
           geoTitle: 'GEO \u6570\u636e\u5e93', geoDesc: 'NCBI Gene Expression Omnibus \u4e2d\u6536\u5f55\u7684\u590d\u53d1\u80f6\u8d28\u7624\u7ec4\u5b66\u6570\u636e\u96c6',
           glassTitle: 'GLASS \u8054\u76df', glassDesc: 'Glioma Longitudinal AnalySiS\uff0c\u7eb5\u5411\u8ffd\u8e2a\u521d\u53d1-\u590d\u53d1\u914d\u5bf9\u6837\u672c\u7684\u56fd\u9645\u8054\u76df',
           cggaTitle: '\u4e2d\u56fd\u8111\u80f6\u8d28\u7624\u57fa\u56e0\u7ec4\u56fe\u8c31', cggaDesc: 'Chinese Glioma Genome Atlas\uff0c\u5927\u89c4\u6a21\u4e2d\u56fd\u80f6\u8d28\u7624\u591a\u7ec4\u5b66\u961f\u5217',
@@ -347,15 +556,11 @@
           otherTitle: '\u5176\u4ed6\u6570\u636e\u6765\u6e90', otherDesc: 'Ivy GAP\u3001REMBRANDT\u3001EORTC\u3001\u5355\u4e2d\u5fc3\u961f\u5217\u53ca\u6587\u732e\u9644\u5c5e\u6570\u636e\u96c6\u7b49',
         },
         fr: {
-          badge: 'Agr\u00e9gation multi-sources',
-          siteTitle: 'Gliome r\u00e9current',
-          siteTitleAccent: 'Multi-omique',
-          siteTitleEnd: 'Explorateur',
+          badge: 'Agr\u00e9gation multi-sources', siteTitle: 'Gliome r\u00e9current', siteTitleAccent: 'Multi-omique', siteTitleEnd: 'Explorateur',
           subtitle: 'Explorateur int\u00e9gr\u00e9 de jeux de donn\u00e9es pour la recherche sur les gliomes r\u00e9currents',
           omicsBar: 'Bulk RNA-seq \u00b7 scRNA-seq \u00b7 snRNA-seq \u00b7 Transcriptomique spatiale \u00b7 WES/WGS \u00b7 M\u00e9thylation \u00b7 Prot\u00e9omique',
-          viewAll: 'Voir tous les jeux de donn\u00e9es',
-          metaInfo: 'Sources : GEO, GLASS, CGGA, TCGA, CPTAC, cBioPortal \u00b7 Mis \u00e0 jour p\u00e9riodiquement',
-          explore: 'EXPLORER',
+          viewAll: 'Voir tous les jeux de donn\u00e9es', metaInfo: 'Sources : GEO, GLASS, CGGA, TCGA, CPTAC, cBioPortal \u00b7 Mis \u00e0 jour p\u00e9riodiquement',
+          explore: 'EXPLORER', sectionSources: 'Sources de donn\u00e9es',
           geoTitle: 'Base GEO', geoDesc: 'Jeux de donn\u00e9es omiques de gliomes r\u00e9currents du NCBI Gene Expression Omnibus',
           glassTitle: 'Consortium GLASS', glassDesc: 'Glioma Longitudinal AnalySiS \u2014 consortium international de suivi des \u00e9chantillons appari\u00e9s',
           cggaTitle: 'CGGA', cggaDesc: 'Chinese Glioma Genome Atlas \u2014 grande cohorte multi-omique de gliomes chinois',
@@ -365,15 +570,11 @@
           otherTitle: 'Autres sources', otherDesc: 'Ivy GAP, REMBRANDT, EORTC, cohortes monocentriques et jeux de donn\u00e9es suppl\u00e9mentaires',
         },
         de: {
-          badge: 'Multi-Quellen-Aggregation',
-          siteTitle: 'Rezidiv-Gliom',
-          siteTitleAccent: 'Multi-Omik',
-          siteTitleEnd: 'Explorer',
+          badge: 'Multi-Quellen-Aggregation', siteTitle: 'Rezidiv-Gliom', siteTitleAccent: 'Multi-Omik', siteTitleEnd: 'Explorer',
           subtitle: 'Integrierter Datensatz-Explorer f\u00fcr die Forschung an rezidivierenden Gliomen',
           omicsBar: 'Bulk RNA-seq \u00b7 scRNA-seq \u00b7 snRNA-seq \u00b7 R\u00e4umliche Transkriptomik \u00b7 WES/WGS \u00b7 Methylierung \u00b7 Proteomik',
-          viewAll: 'Alle Datens\u00e4tze anzeigen',
-          metaInfo: 'Datenquellen: GEO, GLASS, CGGA, TCGA, CPTAC, cBioPortal \u00b7 Regelm\u00e4\u00dfig aktualisiert',
-          explore: 'ERKUNDEN',
+          viewAll: 'Alle Datens\u00e4tze anzeigen', metaInfo: 'Datenquellen: GEO, GLASS, CGGA, TCGA, CPTAC, cBioPortal \u00b7 Regelm\u00e4\u00dfig aktualisiert',
+          explore: 'ERKUNDEN', sectionSources: 'Datenquellen',
           geoTitle: 'GEO-Datenbank', geoDesc: 'Rezidiv-Gliom-Omik-Datens\u00e4tze aus dem NCBI Gene Expression Omnibus',
           glassTitle: 'GLASS-Konsortium', glassDesc: 'Glioma Longitudinal AnalySiS \u2014 internationales Konsortium zur Verfolgung von Prim\u00e4r-Rezidiv-Probenpaaren',
           cggaTitle: 'CGGA', cggaDesc: 'Chinese Glioma Genome Atlas \u2014 gro\u00df angelegte chinesische Gliom-Multi-Omik-Kohorte',
@@ -393,7 +594,6 @@
         });
       }
 
-      // Init from stored preference
       (function() {
         const saved = localStorage.getItem('rg-explorer-lang') || 'en';
         document.getElementById('langSelect').value = saved;

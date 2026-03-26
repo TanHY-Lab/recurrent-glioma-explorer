@@ -267,7 +267,7 @@ function dataTypeTagType(dt) {
 }
 
 .accession-link {
-  color: #00d4aa;
+  color: #FC3D21;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.85rem;
@@ -289,18 +289,18 @@ function dataTypeTagType(dt) {
   font-size: 0.88rem;
 }
 
-.num-value.accent { color: #00d4aa; }
-.num-value.muted { color: #4a5580; }
+.num-value.accent { color: #FC3D21; }
+.num-value.muted { color: #5a6a8a; }
 
 .date-text {
   font-size: 0.82rem;
-  color: #8892b0;
+  color: #a8b8d0;
 }
 
 /* Expand content */
 .expand-content {
   padding: 1rem 1.5rem;
-  background: #0c1230;
+  background: #080e1e;
   border-radius: 4px;
 }
 
@@ -316,7 +316,7 @@ function dataTypeTagType(dt) {
   font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #00d4aa;
+  color: #FC3D21;
   font-weight: 600;
   margin-bottom: 0.3rem;
 }
@@ -334,7 +334,7 @@ function dataTypeTagType(dt) {
 }
 
 .pubmed-link, .source-link {
-  color: #00d4aa;
+  color: #FC3D21;
   text-decoration: none;
   margin-right: 1rem;
   font-size: 0.82rem;
@@ -356,7 +356,7 @@ function dataTypeTagType(dt) {
 
 .result-info {
   font-size: 0.78rem;
-  color: #8892b0;
+  color: #a8b8d0;
   letter-spacing: 0.03em;
 }
 
