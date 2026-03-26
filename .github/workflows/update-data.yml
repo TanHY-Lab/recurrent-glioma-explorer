@@ -1,0 +1,125 @@
+name: Update Datasets
+
+on:
+  schedule:
+    - cron: '0 16 * * *'
+  workflow_dispatch:
+    inputs:
+      full_refresh:
+        description: 'Run full refresh of all sources'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Validate required secrets
+        env:
+          NCBI_EMAIL: ${{ secrets.NCBI_EMAIL }}
+        run: |
+          if [ -z "$NCBI_EMAIL" ]; then
+            echo "Missing required repository secret: NCBI_EMAIL"
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run update script
+        env:
+          NCBI_EMAIL: ${{ secrets.NCBI_EMAIL }}
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+        run: |
+          DAY_OF_WEEK=$(date +%u)
+          if [ "$DAY_OF_WEEK" -eq 7 ] || [ "${{ inputs.full_refresh }}" = "true" ]; then
+            echo "Running full refresh of all sources..."
+            python scripts/update_data.py --full
+          else
+            echo "Running GEO incremental update..."
+            python scripts/update_data.py
+          fi
+
+      - name: Validate datasets.json
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          data_file = Path("data/datasets.json")
+          if not data_file.exists():
+              raise SystemExit("data/datasets.json does not exist")
+
+          text = data_file.read_text(encoding="utf-8").strip()
+          if not text:
+              raise SystemExit("data/datasets.json is empty")
+
+          data = json.loads(text)
+
+          if isinstance(data, list):
+              count = len(data)
+          elif isinstance(data, dict):
+              count = len(data)
+          else:
+              raise SystemExit(f"Unexpected JSON type: {type(data).__name__}")
+
+          if count == 0:
+              raise SystemExit("data/datasets.json contains no entries")
+
+          print(f"Validation passed: {count} entries in datasets.json")
+          PY
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git add data/datasets.json
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "Auto-update glioma datasets $(date +%Y-%m-%d)"
+
+          for i in 1 2 3 4 5; do
+            echo "Attempt $i..."
+
+            git rebase --abort || true
+
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              echo "Push succeeded!"
+              exit 0
+            fi
+
+            echo "Push failed, retrying in 5 seconds..."
+            sleep 5
+          done
+
+          echo "All push attempts failed"
+          exit 1

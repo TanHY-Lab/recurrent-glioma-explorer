@@ -1,0 +1,677 @@
+[
+  {
+    "id": "IvyGAP",
+    "source": "IvyGAP",
+    "accession": "IvyGAP",
+    "title": "Ivy Glioblastoma Atlas Project (Ivy GAP)",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "bulk RNA-seq",
+      "spatial transcriptomics"
+    ],
+    "sample_count": 270,
+    "recurrent_sample_count": 12,
+    "tumor_subtypes": [
+      "GBM"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "EGFR",
+      "PTEN",
+      "TP53"
+    ],
+    "treatment_info": "Anatomic transcriptomic atlas of GBM; includes some recurrent tumor specimens with treatment history",
+    "summary": "The Ivy Glioblastoma Atlas Project provides in situ hybridization (ISH) and laser-microdissection-based transcriptomic data from anatomic structures within glioblastoma tumors. 270 RNA-seq samples from 42 tumors capturing distinct histological features: leading edge, infiltrating tumor, cellular tumor, perinecrotic zone, and pseudopalisading cells around necrosis. Includes paired laser-capture microdissected and bulk tumor samples.",
+    "contributors": "Allen Institute for Brain Science; Ben Barres Lab",
+    "institution": "Allen Institute for Brain Science",
+    "country": "USA",
+    "publication_date": "2017-11-01",
+    "pubmed_ids": [
+      "29084289"
+    ],
+    "source_url": "https://glioblastoma.alleninstitute.org/",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "REMBRANDT",
+    "source": "REMBRANDT",
+    "accession": "GSE108476",
+    "title": "REMBRANDT - Repository for Molecular BRAin Neoplasia DaTa",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "microarray",
+      "WES/WGS"
+    ],
+    "sample_count": 671,
+    "recurrent_sample_count": 35,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "EGFR",
+      "PTEN",
+      "TP53",
+      "MGMT"
+    ],
+    "treatment_info": "Multi-institutional clinical trial cohort with treatment annotations",
+    "summary": "REMBRANDT (REpository for Molecular BRAin Neoplasia DaTa) is a multi-institutional clinical genomics dataset comprising gene expression microarray and copy number data from 671 brain tumor specimens, including glioblastoma, astrocytoma, and oligodendroglioma. Contains a subset of recurrent glioma samples with clinical outcome data. Originally curated by NCI and now available through GEO (GSE108476).",
+    "contributors": "NCI REMBRANDT Project",
+    "institution": "National Cancer Institute",
+    "country": "USA",
+    "publication_date": "2018-01-15",
+    "pubmed_ids": [
+      "15827123"
+    ],
+    "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE108476",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "GSAM_EORTC",
+    "source": "G-SAM/EORTC",
+    "accession": "EGAS00001004582",
+    "title": "G-SAM / EORTC 26091 - Glioblastoma Spatial and Molecular Analysis",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "WES/WGS",
+      "bulk RNA-seq"
+    ],
+    "sample_count": 222,
+    "recurrent_sample_count": 110,
+    "tumor_subtypes": [
+      "GBM"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "MGMT",
+      "TERT",
+      "EGFR"
+    ],
+    "treatment_info": "Prospective EORTC trial with matched primary and recurrent GBM samples; standard-of-care TMZ + radiation",
+    "summary": "The Glioblastoma Spatial and Molecular (G-SAM) study conducted under the EORTC 26091 clinical trial provides multi-region whole-genome and transcriptomic sequencing of matched primary and recurrent glioblastoma. Examines spatial heterogeneity, clonal evolution, and treatment-induced genomic changes. Data hosted on the European Genome-phenome Archive (EGA).",
+    "contributors": "Erasmus MC; EORTC Brain Tumour Group",
+    "institution": "Erasmus University Medical Center",
+    "country": "Netherlands",
+    "publication_date": "2022-09-01",
+    "pubmed_ids": [
+      "36055464"
+    ],
+    "source_url": "https://ega-archive.org/studies/EGAS00001004582",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "GBM_CARE",
+    "source": "GBM CARE",
+    "accession": "GBM_CARE",
+    "title": "GBM CARE Consortium - Comprehensive Analysis of Recurrent GBM Evolution",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "WES/WGS",
+      "bulk RNA-seq",
+      "methylation array"
+    ],
+    "sample_count": 304,
+    "recurrent_sample_count": 152,
+    "tumor_subtypes": [
+      "GBM"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "MGMT",
+      "TERT",
+      "EGFR",
+      "PTEN",
+      "NF1"
+    ],
+    "treatment_info": "Paired primary-recurrent GBM from multiple European centers; TMZ-based chemotherapy and radiotherapy",
+    "summary": "The GBM CARE (Comprehensive Analysis of Recurrent Evolution) consortium collected matched primary and recurrent GBM specimens from multiple European neuro-oncology centers. Multi-omics profiling (WES, RNA-seq, DNA methylation) was performed to characterize genomic and epigenomic evolution during GBM recurrence, identifying recurrence-specific driver events and treatment-associated mutational patterns.",
+    "contributors": "GBM CARE Consortium",
+    "institution": "German Cancer Research Center (DKFZ)",
+    "country": "Germany",
+    "publication_date": "2023-03-15",
+    "pubmed_ids": [],
+    "source_url": "",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "CELLO2_CGGA_AGGA",
+    "source": "CELLO2/CGGA-AGGA",
+    "accession": "CELLO2",
+    "title": "CELLO2 / CGGA-AGGA - Chinese/Asian Glioma Genome Atlas Expansion",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "bulk RNA-seq",
+      "WES/WGS",
+      "methylation array"
+    ],
+    "sample_count": 2000,
+    "recurrent_sample_count": 500,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "IDH2",
+      "1p/19q",
+      "MGMT",
+      "TERT",
+      "ATRX"
+    ],
+    "treatment_info": "Large-scale Chinese and Asian glioma cohort with primary and recurrent samples; includes treatment response annotations",
+    "summary": "CELLO2 (CancEr celluLar LOngitudinal) and the expanded CGGA-AGGA (Asian Glioma Genome Atlas) provide a comprehensive multi-omics resource for approximately 2,000 glioma specimens from Chinese and Asian populations. Includes matched primary-recurrent pairs with genomic, transcriptomic, and epigenomic profiling, enabling analysis of recurrence-associated molecular changes in Asian glioma patients.",
+    "contributors": "CGGA Consortium; Beijing Tiantan Hospital",
+    "institution": "Beijing Tiantan Hospital / Capital Medical University",
+    "country": "China",
+    "publication_date": "2023-06-01",
+    "pubmed_ids": [
+      "37264039"
+    ],
+    "source_url": "http://www.cgga.org.cn/",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "OpenPBTA_CBTN",
+    "source": "OpenPBTA/CBTN",
+    "accession": "OpenPBTA",
+    "title": "Open Pediatric Brain Tumor Atlas (OpenPBTA) / CBTN",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "WES/WGS",
+      "bulk RNA-seq",
+      "scRNA-seq"
+    ],
+    "sample_count": 1074,
+    "recurrent_sample_count": 130,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [
+      "H3K27M",
+      "H3G34R/V",
+      "BRAF",
+      "IDH1",
+      "TP53",
+      "ATRX"
+    ],
+    "treatment_info": "Pediatric brain tumors with some adult recurrent glioma; treatment annotations available in clinical data",
+    "summary": "The Open Pediatric Brain Tumor Atlas (OpenPBTA), a project of the Children's Brain Tumor Network (CBTN), provides harmonized multi-omics data for over 1,000 pediatric and young adult brain tumor samples. Includes whole-genome sequencing, RNA-seq, and single-cell data with a subset of recurrent/progressive glioma specimens. Data and analyses are openly available on the CAVATICA platform.",
+    "contributors": "Children's Brain Tumor Network (CBTN); Alex's Lemonade Stand Foundation",
+    "institution": "Children's Hospital of Philadelphia",
+    "country": "USA",
+    "publication_date": "2023-02-01",
+    "pubmed_ids": [
+      "36747053"
+    ],
+    "source_url": "https://github.com/PediatricOpenTargets/OpenPBTA-analysis",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "MSK_IMPACT_Glioma",
+    "source": "MSK-IMPACT",
+    "accession": "MSK-IMPACT",
+    "title": "MSK-IMPACT Targeted Panel Sequencing - Glioma Cohort",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "WES/WGS"
+    ],
+    "sample_count": 2500,
+    "recurrent_sample_count": 800,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "IDH2",
+      "TP53",
+      "ATRX",
+      "TERT",
+      "EGFR",
+      "PTEN",
+      "NF1",
+      "PIK3CA",
+      "PDGFRA"
+    ],
+    "treatment_info": "Clinical targeted sequencing with extensive treatment and outcome annotations; many recurrent samples from clinical care",
+    "summary": "MSK-IMPACT is a FDA-authorized targeted sequencing panel covering 468+ cancer-associated genes, applied to clinical care at Memorial Sloan Kettering. The glioma cohort includes approximately 2,500 tumor samples with a substantial fraction of recurrent gliomas sequenced as part of clinical care. Somatic mutations, copy number alterations, and structural variants are available through cBioPortal.",
+    "contributors": "Memorial Sloan Kettering Cancer Center",
+    "institution": "Memorial Sloan Kettering Cancer Center",
+    "country": "USA",
+    "publication_date": "2017-05-01",
+    "pubmed_ids": [
+      "28481359"
+    ],
+    "source_url": "https://www.cbioportal.org/study/summary?id=msk_impact_2017",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "AACR_GENIE_Glioma",
+    "source": "AACR GENIE",
+    "accession": "GENIE",
+    "title": "AACR Project GENIE - Glioma/GBM Subset",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "WES/WGS"
+    ],
+    "sample_count": 5000,
+    "recurrent_sample_count": 1500,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "IDH2",
+      "TP53",
+      "ATRX",
+      "TERT",
+      "EGFR",
+      "PTEN",
+      "NF1",
+      "PIK3CA",
+      "CDKN2A"
+    ],
+    "treatment_info": "Multi-institutional clinical sequencing data with treatment and outcome annotations for a subset of patients",
+    "summary": "AACR Project GENIE (Genomics Evidence Neoplasia Information Exchange) aggregates clinical-grade genomic data from multiple cancer centers worldwide. The glioma/GBM subset includes approximately 5,000 tumor samples from panels including MSK-IMPACT, DFCI OncoPanel, VICC, and others. A significant fraction represents recurrent gliomas sequenced during clinical care. Data are released publicly in periodic releases through Synapse.",
+    "contributors": "AACR Project GENIE Consortium",
+    "institution": "American Association for Cancer Research",
+    "country": "International",
+    "publication_date": "2017-10-01",
+    "pubmed_ids": [
+      "28572459"
+    ],
+    "source_url": "https://www.synapse.org/#!Synapse:syn7222066",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "GLASS_difg_glass",
+    "source": "GLASS",
+    "accession": "difg_glass",
+    "title": "Diffuse Glioma (GLASS Consortium)",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "WES",
+      "WGS"
+    ],
+    "sample_count": 1,
+    "recurrent_sample_count": null,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [],
+    "treatment_info": "",
+    "summary": "Whole genome or whole exome sequencing analysis of temporally separated diffuse glioma tumor/normal pairs from 329 adult patients. The data provided is based on the May 31, 2022 version and can be accessed at <a href=\"https://www.synapse.org/#!Synapse:syn17038081/wiki/585622\">Synapse</a>.",
+    "contributors": "",
+    "institution": "",
+    "country": "",
+    "publication_date": "2026-01-16 16:46:26",
+    "pubmed_ids": [
+      "35649412,38117484"
+    ],
+    "source_url": "https://www.cbioportal.org/study/summary?id=difg_glass",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "GLASS_difg_glass_2019",
+    "source": "GLASS",
+    "accession": "difg_glass_2019",
+    "title": "Diffuse Glioma (GLASS Consortium, Nature 2019)",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "WES",
+      "WGS"
+    ],
+    "sample_count": 1,
+    "recurrent_sample_count": null,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [],
+    "treatment_info": "",
+    "summary": "Whole genome or whole exome sequencing analysis of temporally separated diffuse glioma tumor/normal pairs from 222 adult patients.",
+    "contributors": "",
+    "institution": "",
+    "country": "",
+    "publication_date": "2026-01-07 03:51:35",
+    "pubmed_ids": [
+      "31748746"
+    ],
+    "source_url": "https://www.cbioportal.org/study/summary?id=difg_glass_2019",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "GLASS_CONSORTIUM",
+    "source": "GLASS",
+    "accession": "GLASS",
+    "title": "GLASS Consortium - Glioma Longitudinal AnalySiS",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "WES",
+      "WGS",
+      "bulk RNA-seq",
+      "methylation array"
+    ],
+    "sample_count": 1147,
+    "recurrent_sample_count": 554,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "IDH2",
+      "1p/19q",
+      "MGMT",
+      "TERT"
+    ],
+    "treatment_info": "Pre- and post-treatment paired samples; TMZ, radiation, bevacizumab",
+    "summary": "The GLASS consortium is a large-scale collaborative effort to characterize the longitudinal genomic landscape of diffuse gliomas. The project collected whole-exome sequencing, whole-genome sequencing, RNA-seq, and DNA methylation data from matched initial and recurrent glioma specimens across multiple institutions worldwide. Key findings include characterization of treatment-associated hypermutation, tumor microenvironment evolution, and clonal dynamics during glioma progression.",
+    "contributors": "GLASS Consortium",
+    "institution": "Multi-institutional consortium",
+    "country": "International",
+    "publication_date": "2019-02-13",
+    "pubmed_ids": [
+      "30753390",
+      "35163337",
+      "34297920"
+    ],
+    "source_url": "https://www.synapse.org/#!Synapse:syn17038081",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "GLASS_cBioPortal",
+    "source": "GLASS",
+    "accession": "glass_dfci_2019",
+    "title": "GLASS - Glioma Longitudinal AnalySiS (cBioPortal)",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "WES",
+      "WGS"
+    ],
+    "sample_count": 580,
+    "recurrent_sample_count": 290,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "IDH2",
+      "1p/19q",
+      "MGMT"
+    ],
+    "treatment_info": "Paired initial and recurrent tumor samples",
+    "summary": "Longitudinal whole-exome/whole-genome sequencing of matched initial and recurrent diffuse gliomas from the GLASS consortium, available via cBioPortal.",
+    "contributors": "GLASS Consortium",
+    "institution": "Multi-institutional consortium",
+    "country": "International",
+    "publication_date": "2019-02-13",
+    "pubmed_ids": [
+      "30753390"
+    ],
+    "source_url": "https://www.cbioportal.org/study/summary?id=glass_dfci_2019",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "CGGA_RNAseq_Batch1",
+    "source": "CGGA",
+    "accession": "CGGA_RNAseq_325",
+    "title": "CGGA RNA-seq Batch 1 (mRNAseq_325)",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "bulk RNA-seq"
+    ],
+    "sample_count": 325,
+    "recurrent_sample_count": 109,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "IDH2",
+      "1p/19q",
+      "MGMT"
+    ],
+    "treatment_info": "Primary and recurrent samples with treatment annotation",
+    "summary": "CGGA RNA-seq Batch 1 contains mRNA sequencing data for 325 glioma samples including primary and recurrent tumors across WHO grades II-IV. Includes IDH mutation status, 1p/19q codeletion status, and MGMT promoter methylation.",
+    "contributors": "Beijing Tiantan Hospital, Capital Medical University",
+    "institution": "Beijing Tiantan Hospital",
+    "country": "China",
+    "publication_date": "2021-01-29",
+    "pubmed_ids": [
+      "33476548"
+    ],
+    "source_url": "http://www.cgga.org.cn/download.jsp",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "CGGA_RNAseq_Batch2",
+    "source": "CGGA",
+    "accession": "CGGA_RNAseq_693",
+    "title": "CGGA RNA-seq Batch 2 (mRNAseq_693)",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "bulk RNA-seq"
+    ],
+    "sample_count": 693,
+    "recurrent_sample_count": 188,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "IDH2",
+      "1p/19q",
+      "MGMT"
+    ],
+    "treatment_info": "Primary and recurrent samples with treatment annotation",
+    "summary": "CGGA RNA-seq Batch 2 contains mRNA sequencing data for 693 glioma samples including a significant proportion of recurrent cases. Provides gene expression profiles along with clinical and molecular annotations for Chinese glioma patients.",
+    "contributors": "Beijing Tiantan Hospital, Capital Medical University",
+    "institution": "Beijing Tiantan Hospital",
+    "country": "China",
+    "publication_date": "2021-01-29",
+    "pubmed_ids": [
+      "33476548"
+    ],
+    "source_url": "http://www.cgga.org.cn/download.jsp",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "CGGA_WES",
+    "source": "CGGA",
+    "accession": "CGGA_WES_286",
+    "title": "CGGA Whole Exome Sequencing (286 samples)",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "WES/WGS"
+    ],
+    "sample_count": 286,
+    "recurrent_sample_count": 86,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "IDH2",
+      "TP53",
+      "ATRX",
+      "TERT"
+    ],
+    "treatment_info": "Includes paired primary-recurrent samples",
+    "summary": "Whole exome sequencing of 286 Chinese glioma samples covering all WHO grades. Includes somatic mutation calls, copy number alterations, and mutational signature analyses. Contains paired primary and recurrent tumor specimens.",
+    "contributors": "Beijing Tiantan Hospital, Capital Medical University",
+    "institution": "Beijing Tiantan Hospital",
+    "country": "China",
+    "publication_date": "2021-01-29",
+    "pubmed_ids": [
+      "33476548"
+    ],
+    "source_url": "http://www.cgga.org.cn/download.jsp",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "CGGA_Methylation",
+    "source": "CGGA",
+    "accession": "CGGA_Methylation_159",
+    "title": "CGGA DNA Methylation (159 samples)",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "methylation array"
+    ],
+    "sample_count": 159,
+    "recurrent_sample_count": 39,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [
+      "MGMT",
+      "IDH1",
+      "IDH2"
+    ],
+    "treatment_info": "Primary and recurrent glioma methylation profiles",
+    "summary": "DNA methylation profiling of 159 Chinese glioma samples using Illumina arrays. Provides genome-wide methylation data for classification and MGMT promoter methylation status assessment across glioma grades.",
+    "contributors": "Beijing Tiantan Hospital, Capital Medical University",
+    "institution": "Beijing Tiantan Hospital",
+    "country": "China",
+    "publication_date": "2021-01-29",
+    "pubmed_ids": [
+      "33476548"
+    ],
+    "source_url": "http://www.cgga.org.cn/download.jsp",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "CGGA_miRNA",
+    "source": "CGGA",
+    "accession": "CGGA_miRNA_198",
+    "title": "CGGA miRNA Expression (198 samples)",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "microarray"
+    ],
+    "sample_count": 198,
+    "recurrent_sample_count": 53,
+    "tumor_subtypes": [
+      "GBM",
+      "Astrocytoma",
+      "Oligodendroglioma"
+    ],
+    "molecular_markers": [
+      "IDH1"
+    ],
+    "treatment_info": "Primary and recurrent glioma samples",
+    "summary": "miRNA expression profiling of 198 Chinese glioma samples. Captures non-coding RNA expression changes across glioma grades and between primary and recurrent disease states.",
+    "contributors": "Beijing Tiantan Hospital, Capital Medical University",
+    "institution": "Beijing Tiantan Hospital",
+    "country": "China",
+    "publication_date": "2021-01-29",
+    "pubmed_ids": [
+      "33476548"
+    ],
+    "source_url": "http://www.cgga.org.cn/download.jsp",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "CPTAC_GBM",
+    "source": "CPTAC",
+    "accession": "CPTAC-GBM",
+    "title": "CPTAC Glioblastoma Discovery Study - Proteogenomic Characterization",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "proteomics",
+      "bulk RNA-seq",
+      "WES/WGS",
+      "methylation array",
+      "scRNA-seq",
+      "snRNA-seq",
+      "spatial transcriptomics",
+      "ATAC-seq"
+    ],
+    "sample_count": 228,
+    "recurrent_sample_count": 28,
+    "tumor_subtypes": [
+      "GBM"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "EGFR",
+      "EGFRvIII",
+      "PTEN",
+      "TP53",
+      "TERT",
+      "NF1",
+      "PDGFRA",
+      "CDK4",
+      "MDM2",
+      "MGMT"
+    ],
+    "treatment_info": "Includes 28 matched recurrent samples post standard-of-care treatment (TMZ + radiation). Proteogenomic analysis of treatment response and resistance mechanisms.",
+    "summary": "The CPTAC Glioblastoma Discovery Study provides deep proteogenomic characterization of 228 tumor samples from 200 GBM patients, including 28 matched recurrent tumors. Data were generated across 14 omics platforms including whole-exome sequencing, RNA-seq, global proteomics, phosphoproteomics, acetylproteomics, ubiquitylomics, single-cell RNA-seq, single-nucleus RNA-seq, spatial transcriptomics, ATAC-seq, DNA methylation arrays, lipidomics, metabolomics, and whole-genome sequencing. The study identified proteomic subtypes of GBM and characterized immune cell infiltration patterns, metabolic reprogramming, and signaling pathway alterations associated with tumor recurrence.",
+    "contributors": "Clinical Proteomic Tumor Analysis Consortium (CPTAC); National Cancer Institute",
+    "institution": "NCI / Clinical Proteomic Tumor Analysis Consortium",
+    "country": "USA",
+    "publication_date": "2021-02-18",
+    "pubmed_ids": [
+      "33577785"
+    ],
+    "source_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000204",
+    "last_updated": "2026-03-26"
+  },
+  {
+    "id": "CPTAC_GBM_GDC",
+    "source": "CPTAC",
+    "accession": "CPTAC-GBM-GDC",
+    "title": "CPTAC GBM Data on GDC (Genomic Data Commons)",
+    "organism": "Homo sapiens",
+    "data_types": [
+      "WES/WGS",
+      "bulk RNA-seq",
+      "methylation array"
+    ],
+    "sample_count": 228,
+    "recurrent_sample_count": 28,
+    "tumor_subtypes": [
+      "GBM"
+    ],
+    "molecular_markers": [
+      "IDH1",
+      "EGFR",
+      "PTEN",
+      "TP53",
+      "TERT"
+    ],
+    "treatment_info": "Matched primary and recurrent tumor pairs",
+    "summary": "Genomic and transcriptomic data from the CPTAC GBM study hosted on the NCI Genomic Data Commons portal. Includes whole-exome sequencing, RNA-seq, and methylation array data with clinical annotations.",
+    "contributors": "Clinical Proteomic Tumor Analysis Consortium (CPTAC)",
+    "institution": "NCI / Genomic Data Commons",
+    "country": "USA",
+    "publication_date": "2021-02-18",
+    "pubmed_ids": [
+      "33577785"
+    ],
+    "source_url": "https://portal.gdc.cancer.gov/projects/CPTAC-3",
+    "last_updated": "2026-03-26"
+  }
+]

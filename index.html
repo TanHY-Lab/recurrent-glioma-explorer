@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recurrent Glioma Multi-Omics Explorer</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+        --bg-deep: #0a0e27;
+        --bg-card: #131a3e;
+        --bg-card-hover: #1a2350;
+        --accent: #00d4aa;
+        --accent-dim: rgba(0, 212, 170, 0.15);
+        --accent-border: rgba(0, 212, 170, 0.25);
+        --text-primary: #e8edf5;
+        --text-secondary: #8892b0;
+        --text-muted: #4a5580;
+        --border: rgba(0, 212, 170, 0.12);
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg-deep);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2.5rem 1.5rem;
+        color: var(--text-primary);
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .wrapper { position: relative; z-index: 1; width: 100%; max-width: 1160px; }
+
+      /* Header */
+      .header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .header .badge {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        border: 1px solid var(--accent-border);
+        padding: 0.3rem 1rem;
+        border-radius: 2px;
+        margin-bottom: 1.2rem;
+      }
+
+      .header h1 {
+        color: #ffffff;
+        font-size: 2.4rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        margin-bottom: 0.4rem;
+      }
+
+      .header h1 span { color: var(--accent); }
+
+      .header .subtitle-zh {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        font-weight: 400;
+        margin-bottom: 0.8rem;
+      }
+
+      .header .desc {
+        color: var(--text-muted);
+        font-size: 0.88rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+      }
+
+      /* Cards Grid */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .card {
+        background: var(--bg-card);
+        padding: 2rem 1.6rem;
+        text-decoration: none;
+        color: inherit;
+        transition: background 0.3s;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .card:hover { background: var(--bg-card-hover); }
+
+      .card .icon-area {
+        font-size: 2rem;
+        line-height: 1;
+        margin-bottom: 0.2rem;
+      }
+
+      .card .title-en {
+        font-size: 0.68rem;
+        color: var(--accent);
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .card .title-zh {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #ffffff;
+        letter-spacing: 0.01em;
+      }
+
+      .card .desc {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+        flex: 1;
+      }
+
+      .card .arrow {
+        margin-top: auto;
+        color: rgba(0, 212, 170, 0.4);
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        transition: color 0.2s;
+      }
+
+      .card:hover .arrow { color: var(--accent); }
+
+      /* Wide card spanning 3 columns on last row */
+      .card.wide { grid-column: span 1; }
+
+      /* Bottom bar */
+      .bottom-bar {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .bottom-bar .meta {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        letter-spacing: 0.03em;
+      }
+
+      .bottom-bar a {
+        color: var(--accent);
+        font-size: 0.8rem;
+        text-decoration: none;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        padding: 0.55rem 1.4rem;
+        border: 1px solid var(--accent-border);
+        border-radius: 3px;
+        transition: background 0.2s, border-color 0.2s;
+      }
+
+      .bottom-bar a:hover {
+        background: var(--accent-dim);
+        border-color: var(--accent);
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .cards { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      @media (max-width: 560px) {
+        .cards { grid-template-columns: 1fr; }
+        .header h1 { font-size: 1.6rem; }
+        .header .subtitle-zh { font-size: 0.95rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <div class="badge">Multi-Source Aggregation</div>
+        <h1>Recurrent Glioma <span>Multi-Omics</span> Explorer</h1>
+        <div class="subtitle-zh">复发胶质瘤多组学数据浏览器</div>
+        <p class="desc">
+          Bulk RNA-seq &middot; scRNA-seq &middot; snRNA-seq &middot; Spatial Transcriptomics &middot; WES/WGS &middot; Methylation &middot; Proteomics
+        </p>
+      </div>
+
+      <div class="cards">
+        <!-- GEO -->
+        <a class="card" href="explorer.html?source=GEO">
+          <div class="icon-area">&#128451;</div>
+          <div class="title-en">GEO / NCBI</div>
+          <div class="title-zh">GEO 数据库</div>
+          <div class="desc">NCBI Gene Expression Omnibus 中收录的复发胶质瘤组学数据集</div>
+          <div class="arrow">EXPLORE &#8594;</div>
+        </a>
+
+        <!-- GLASS -->
+        <a class="card" href="explorer.html?source=GLASS">
+          <div class="icon-area">&#129516;</div>
+          <div class="title-en">GLASS Consortium</div>
+          <div class="title-zh">GLASS 联盟</div>
+          <div class="desc">Glioma Longitudinal AnalySiS，纵向追踪初发-复发配对样本的国际联盟</div>
+          <div class="arrow">EXPLORE &#8594;</div>
+        </a>
+
+        <!-- CGGA -->
+        <a class="card" href="explorer.html?source=CGGA">
+          <div class="icon-area">&#127975;</div>
+          <div class="title-en">CGGA</div>
+          <div class="title-zh">中国脑胶质瘤基因组图谱</div>
+          <div class="desc">Chinese Glioma Genome Atlas，大规模中国胶质瘤多组学队列</div>
+          <div class="arrow">EXPLORE &#8594;</div>
+        </a>
+
+        <!-- TCGA / GDC -->
+        <a class="card" href="explorer.html?source=TCGA">
+          <div class="icon-area">&#129516;</div>
+          <div class="title-en">TCGA / GDC</div>
+          <div class="title-zh">TCGA 癌症基因组图谱</div>
+          <div class="desc">NCI Genomic Data Commons，LGG/GBM 多组学数据及复发样本</div>
+          <div class="arrow">EXPLORE &#8594;</div>
+        </a>
+
+        <!-- CPTAC-GBM -->
+        <a class="card" href="explorer.html?source=CPTAC">
+          <div class="icon-area">&#128300;</div>
+          <div class="title-en">CPTAC-GBM</div>
+          <div class="title-zh">CPTAC 蛋白质组学</div>
+          <div class="desc">Clinical Proteomic Tumor Analysis Consortium，GBM 蛋白/磷酸化组学</div>
+          <div class="arrow">EXPLORE &#8594;</div>
+        </a>
+
+        <!-- cBioPortal -->
+        <a class="card" href="explorer.html?source=cBioPortal">
+          <div class="icon-area">&#128202;</div>
+          <div class="title-en">cBioPortal</div>
+          <div class="title-zh">cBioPortal 门户</div>
+          <div class="desc">综合癌症基因组门户网站，含突变、拷贝数、表达等多维数据</div>
+          <div class="arrow">EXPLORE &#8594;</div>
+        </a>
+
+        <!-- Other Sources -->
+        <a class="card" href="explorer.html?source=Other">
+          <div class="icon-area">&#128218;</div>
+          <div class="title-en">Other Sources</div>
+          <div class="title-zh">其他数据来源</div>
+          <div class="desc">Ivy GAP、REMBRANDT、EORTC、单中心队列及文献附属数据集等</div>
+          <div class="arrow">EXPLORE &#8594;</div>
+        </a>
+      </div>
+
+      <div class="bottom-bar">
+        <span class="meta">Data sources: GEO, GLASS, CGGA, TCGA, CPTAC, cBioPortal &middot; Updated periodically</span>
+        <a href="explorer.html">View All Datasets / 浏览所有数据集 &#8594;</a>
+      </div>
+    </div>
+  </body>
+</html>
