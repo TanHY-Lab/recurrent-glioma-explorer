@@ -9,6 +9,8 @@ on:
       - "data/**"
       - "*.html"
       - "src/**"
+      - "package.json"
+      - "vite.config.js"
       - ".nojekyll"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
@@ -45,8 +47,11 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy data to dist
-        run: cp -R data/ dist/
+      - name: Copy data and landing page to dist
+        run: |
+          cp -R data/ dist/
+          cp index.html dist/
+          cp .nojekyll dist/
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
