@@ -98,7 +98,7 @@ const filteredDatasets = computed(() => {
 .header-bg {
   position: absolute;
   inset: 0;
-  background: url('https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1920&q=80') center/cover no-repeat;
+  background: url('/images/explorer-header.jpg') center/cover no-repeat;
   filter: brightness(0.2) saturate(0.5);
 }
 

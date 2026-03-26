@@ -91,7 +91,7 @@
         position: absolute;
         inset: 0;
         background:
-          url('https://images.unsplash.com/photo-1559757175-5700dde675bc?w=1920&q=80') center/cover no-repeat;
+          url('./images/hero-brain.jpg') center/cover no-repeat;
         filter: brightness(0.3) saturate(0.7);
         z-index: 0;
       }
@@ -317,13 +317,20 @@
       }
 
       /* Card backgrounds */
-      .card-geo .card-bg { background-image: url('https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600&q=80'); }
-      .card-glass .card-bg { background-image: url('https://images.unsplash.com/photo-1551190822-a9ce113ac100?w=600&q=80'); }
-      .card-cgga .card-bg { background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80'); }
-      .card-tcga .card-bg { background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80'); }
-      .card-cptac .card-bg { background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80'); }
-      .card-cbio .card-bg { background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80'); }
-      .card-other .card-bg { background-image: url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&q=80'); }
+      /* GEO: DNA double helix — gene expression database */
+      .card-geo .card-bg { background-image: url('./images/geo-dna.jpg'); }
+      /* GLASS: Brain 3D rendering — longitudinal brain tumor tracking */
+      .card-glass .card-bg { background-image: url('./images/glass-brain.jpg'); }
+      /* CGGA: Molecular/medical — Chinese glioma genome atlas */
+      .card-cgga .card-bg { background-image: url('./images/cgga-medical.jpg'); }
+      /* TCGA: DNA abstract — cancer genome atlas */
+      .card-tcga .card-bg { background-image: url('./images/tcga-genome.jpg'); }
+      /* CPTAC: Microscope/lab — proteomic analysis */
+      .card-cptac .card-bg { background-image: url('./images/cptac-lab.jpg'); }
+      /* cBioPortal: AI/neural network brain — cancer genomics data portal */
+      .card-cbio .card-bg { background-image: url('./images/cbio-data.jpg'); }
+      /* Other: Brain neurons/anatomy — various research sources */
+      .card-other .card-bg { background-image: url('./images/other-neuro.jpg'); }
 
       /* Wide last card */
       .source-grid .source-card:last-child {
